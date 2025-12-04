@@ -7,6 +7,6 @@
         public DateTime ExpiresAt { get; set; }
         public bool AllowMultipleVotes { get; set; } = false;
 
-        public List<string> Options { get; set; } = new();  // option texts
+        public List<string> Options { get; set; } = new();
     }
 }
