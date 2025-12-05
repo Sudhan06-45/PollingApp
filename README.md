@@ -1,215 +1,81 @@
-📊 PollingApp — Full-Stack Online Voting System
+# 🗳 PollingApp — Online Voting System
 
-A full-stack polling application built with ASP.NET Core 8 (C#) for the backend and React + Vite + TailwindCSS for the frontend.
-This project enables secure poll creation, voting, result visualization, and role-based access (Admin / Voter).
+A full-stack web application that allows users to participate in polls and administrators to create and manage them.
+Built with ASP.NET Core 8 (backend) and React + Vite (frontend), the project demonstrates secure authentication, real-time voting, and a clean, responsive UI.
 
-🚀 Features
-🔐 Authentication & Authorization
+## ✨ Overview
 
-JWT-based secure login & registration
+PollingApp is designed to simplify the creation and participation of online polls.
+It provides two roles:
+
+## 👤 Voter
+
+View all active polls
+
+Cast a vote (only once per poll)
+
+See poll results with visual charts
+
+Track their own vote
+
+## 🛠 Admin
+
+Create new polls with multiple options
+
+Set poll expiration
+
+Enable/disable multiple voting
+
+Manage poll visibility
+
+## 🔐 Key Features
+### Secure Authentication
+
+JWT-based login and registration
 
 Password hashing with BCrypt
 
-Roles: Admin and Voter
+Role-based access control (Admin / Voter)
 
-🗳 Admin Features
-
-Create polls with multiple options
-
-Set expiry date and enable/disable multiple voting
-
-Manage polls (activate / deactivate)
-
-👥 Voter Features
-
-View active polls
-
-Cast vote (only once per poll)
-
-See poll results in bar-graph format
-
-Track personal vote selection
-
-📦 Architecture Highlights
+### Robust Backend Architecture
 
 Repository Pattern
 
-Service Layer
-
 DTO-based communication
 
-Entity Framework Core + SQL Server
+Service Layer for business logic
 
-CORS-enabled API
+Entity Framework Core with SQL Server
 
-Modern, responsive React UI
+### Modern Frontend
 
-🏗 Folder Structure
-PollingApp/
-│
-├── backend/                         # ASP.NET Core API
-│   ├── PollingApp.sln
-│   ├── Controllers/
-│   ├── Services/
-│   ├── Repositories/
-│   ├── Models/
-│   ├── DTOs/
-│   ├── Data/
-│   ├── Tests/                       # xUnit + Moq
-│   └── appsettings.json
-│
-└── frontend/                        # React + Vite UI
-    ├── src/
-    │   ├── api/
-    │   ├── components/
-    │   ├── context/
-    │   ├── pages/
-    │   ├── tests/                   # Vitest + React Testing Library
-    │   └── App.jsx
-    ├── public/
-    └── vite.config.js
+React + Vite
 
-⚙ Backend Setup (ASP.NET Core 8)
-1️⃣ Navigate to backend
-cd backend
+TailwindCSS for elegant UI
 
-2️⃣ Restore dependencies
-dotnet restore
+Dynamic Poll Result Charts
 
-3️⃣ Update SQL connection in appsettings.json
-"ConnectionStrings": {
-  "DefaultConnection": "Server=localhost;Database=PollingAppDb;Trusted_Connection=True;TrustServerCertificate=True;"
-}
+Responsive layouts for all screens
 
-4️⃣ Apply migrations
-dotnet ef database update
+## 💡 How It Works (High-Level)
 
-5️⃣ Run the API
-dotnet run
+User registers or logs in
+→ System creates a JWT token → Stored in browser → Used for all API calls.
 
+Admin creates a poll
+→ Backend stores questions, options, expiry time.
 
-Backend runs at:
+Voter selects a poll and casts their vote
+→ System verifies that the poll is active and user hasn’t voted before.
 
-https://localhost:7088
+Results are displayed
+→ Vote counts and percentages calculated in backend → Chart rendered in frontend.
 
-🎨 Frontend Setup (React + Vite)
-1️⃣ Navigate to frontend
-cd frontend
+## 🧰 Tech Stack
 
-2️⃣ Install dependencies
-npm install
+### Backend:
 
-3️⃣ Start development server
-npm run dev
-
-
-Frontend runs at:
-
-http://localhost:5173
-
-🔌 API Endpoints Overview
-Authentication
-Method	Endpoint	Description
-POST	/api/auth/register	Register user
-POST	/api/auth/login	Login + JWT
-Polls
-Method	Endpoint	Description
-POST	/api/polls	Create poll (Admin)
-GET	/api/polls	Get active polls
-GET	/api/polls/{id}	Get poll details
-PUT	/api/polls/{id}/status	Activate/Deactivate
-Votes
-Method	Endpoint	Description
-POST	/api/polls/{pollId}/vote	Cast vote
-GET	/api/polls/{pollId}/results	Fetch results
-GET	/api/polls/{pollId}/myvote	Fetch user's vote
-🧪 Testing
-✅ Backend Tests (xUnit + Moq)
-
-Located in:
-
-backend/Tests/
-
-
-Run all backend tests:
-
-dotnet test
-
-
-Covers:
-
-AuthService tests
-
-PollService tests
-
-VoteService tests
-
-Helper/Utility tests
-
-🎯 Frontend Tests (Vitest + React Testing Library)
-
-Located in:
-
-frontend/src/tests/
-
-
-Run all frontend tests:
-
-npm test
-
-
-Covers:
-
-Utility function tests (timeLeft)
-
-Login page rendering & password toggle test
-
-Register page validation test
-
-🖼 Screenshots
-
-(Add screenshots later)
-
-/screenshots
-    login.png
-    register.png
-    admin-create-poll.png
-    voter-poll-list.png
-    poll-results.png
-
-📖 How the System Works (High-Level Flow)
-1. User Registration
-
-User enters details → Password hashed → User stored → JWT created.
-
-2. Login
-
-JWT stored in localStorage → Axios attaches token → Protected API calls allowed.
-
-3. Admin Creates Poll
-
-Admin enters poll details → Options saved → Poll becomes active.
-
-4. Voter Casts Vote
-
-Checks:
-
-Poll exists?
-
-Poll active?
-
-User already voted?
-
-Save vote → Realtime results update.
-
-5. Result Calculation
-
-Vote counts + percentage computed in backend and returned to frontend.
-
-📌 Tech Stack
-Backend
-
-ASP.NET Core 8 (C#)
+ASP.NET Core 8
 
 Entity Framework Core
 
@@ -217,11 +83,13 @@ SQL Server
 
 JWT Authentication
 
-xUnit + Moq
+BCrypt Password Hashing
 
-Frontend
+### Frontend:
 
-React (Vite)
+React
+
+Vite
 
 TailwindCSS
 
@@ -229,19 +97,27 @@ Axios
 
 React Router
 
-Vitest + React Testing Library
+## 🚀 Purpose of the Project
 
-🛠 Future Enhancements
+This project demonstrates real-world full-stack development, including:
 
-Admin dashboard with analytics
+API design
 
-Email verification
+Database modeling
 
-Multi-poll comparison
+Authentication & authorization
 
-Mobile app version
+State management
 
-👤 Author
+Component-based UI
 
-Sudhan Suresh
+Clean architecture patterns
+
+Unit testing (xUnit & Vitest)
+
+Ideal for learning modern full-stack development and showcasing skills to recruiters.
+
+## 👨‍💻 Author
+
+## Sudhan Suresh
 GitHub: https://github.com/Sudhan06-45
